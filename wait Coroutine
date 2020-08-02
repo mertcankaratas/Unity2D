@@ -1,0 +1,32 @@
+ private void OnCollisionEnter2D(Collision2D collision)
+    {
+      
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            //failMusic.Play();
+
+            StartCoroutine(loadLevel());
+                 
+ 
+
+            
+                        
+           }
+
+
+
+        IEnumerator loadLevel()
+        {
+
+            backgroundMusic.Stop();
+            failMusic.Play();
+            
+            yield return new WaitForSeconds(2f);
+
+            SceneManager.LoadScene("bolum1");
+
+            
+           
+        }
