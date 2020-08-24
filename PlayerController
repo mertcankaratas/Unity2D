@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    private Rigidbody2D rigidBody2D;
+    private SpriteRenderer spriteRenderer;
+    public Joystick joystick; // Joystick  prefabını almak için
+    private float horizontalAxis; //Joystick Horizontal axisinin değerini tutmak için (X)
+    private float verticalAxis;//Joystick Vertical axisinin değerini tutmak için (X)
+    public float characterMoveSpeed = 5f; // karakterin hızı
+
+    void Start()
+    {
+        rigidBody2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+       
+    }
+
+   
+    void Update()
+    {
+
+        horizontalAxis = joystick.Horizontal;// Joystick oynatıldında X hareket yönündeki değerini alınıyor 
+        verticalAxis = joystick.Vertical;// Joystick oynatıldında Y hareket yönündeki değerini alınıyor 
+
+        rigidBody2D.velocity = new Vector2(horizontalAxis * characterMoveSpeed, rigidBody2D.velocity.y); // X yönünde Joystick değeriyle karakter hızı çarpılıp o yönde hakeret sağlıyor
+        rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, verticalAxis * characterMoveSpeed);// Y yönünde Joystick değeriyle karakter hızı çarpılıp o yönde hakeret sağlıyor
+
+
+
+
+
+
+    }
+
+    
+}
